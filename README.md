@@ -29,6 +29,11 @@ with this:
 get_list_of_things.nb
 ```
 
+Caution : this is not just a simple wrapper around `blank?` ; when the receiver is Enumerable, `nb`
+returns a new Enumerable containing non-blank elements, or nil if there are no non-blank elements.
+If the receiver is a Hash, `nb` returns a new hash containing only non-blank values, or nil if there
+are no non-blank values. Hash#`nb` does not look at keys.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -59,6 +64,10 @@ false.nb    # => nil
 [false, true].nb # => [true]
 { a: nil, b: "", c: false, d: [[nil],[false], [""]] }.nb # => nil
 ```
+
+## Dependency
+
+This gem assumes you have a meaningful #blank? method defined for all objects of interest. ActionSupport
 
 ## Development
 
